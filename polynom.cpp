@@ -1,7 +1,7 @@
 #include "polynom.h"
 
 //constructor
-polynom::polynom(int n, int * arr): n_(n), coefs_(arr){}
+polynom::polynom(int n, int * arr) : n_(n), coefs_(arr) { minVal_ = 0; maxVal_ = 0; }
 
 //copy constructor
 polynom::polynom(const polynom & poli):	n_(poli.n_)
@@ -10,9 +10,14 @@ polynom::polynom(const polynom & poli):	n_(poli.n_)
 	for (int i = 0; i <= n_; ++i) {
 		coefs_[i] = poli.coefs_[i];
 	}
+
+	//min and max inputs values
+	minVal_ = poli.minVal_;
+	maxVal_ = poli.maxVal_;
 }
 
-func & polynom::operator<<(const int & x)
+
+func & polynom::operator<<(const int & x)		//TODO: check if math::pow is needed.
 {
 	//res holds the final result. power is the computation of power of x in each rank
 	int power = x, res = 0;
@@ -30,6 +35,10 @@ func & polynom::operator<<(const int & x)
 
 	//adding the point
 	fmap_[x] = res;
+
+	//checking for maximum values.
+	if (x < minVal_) minVal_ = x;
+	if (x > maxVal_) maxVal_ = x;
 	return (*this);
 }
 
@@ -154,4 +163,10 @@ void polynom::printcoefs(ostream& os)  const {
 	continue;
     }
   }
+}
+
+void polynom::plot(ostream & os) const
+{
+	printcoefs(os);
+	func::plot(os);
 }

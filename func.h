@@ -1,5 +1,5 @@
-#ifndef _F
-#define _F
+#ifndef _FUNC_
+#define _FUNC_
 #include <map>
 #include <iostream>
 #include <vector>
