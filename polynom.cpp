@@ -1,10 +1,24 @@
 #include "polynom.h"
 
 //constructor
-polynom::polynom(int n, int * arr) : n_(n), coefs_(arr) { minVal_ = 0; maxVal_ = 0; }
+polynom::polynom(int n, int * arr) : n_(n) 
+{
+	minVal_ = 0;
+	maxVal_ = 0;
+	coefs_ = new int[n_ + 1];
+	for (int i = 0; i <= n_ ; ++i)
+	{
+		coefs_[i] = arr[i];
+	}
+}
+
+polynom::~polynom()
+{
+	delete[]coefs_;
+}
 
 //copy constructor
-polynom::polynom(const polynom & poli):	n_(poli.n_)
+polynom::polynom(const polynom& poli):	n_(poli.n_)
 {
 	coefs_ = new int[n_ + 1];
 	for (int i = 0; i <= n_; ++i) {
@@ -16,22 +30,41 @@ polynom::polynom(const polynom & poli):	n_(poli.n_)
 	maxVal_ = poli.maxVal_;
 }
 
+polynom & polynom::operator=(const polynom & poly)
+{
+	if (this != &poly) {
+		n_ = poly.n_;
+		delete[]coefs_;
+		coefs_ = new int[n_ + 1];
+		for (int i = 0; i <= n_; ++i)
+		{
+			coefs_[i] = poly.coefs_[i];
+		}
+	}
+
+	return *this;
+}
+
 
 func & polynom::operator<<(const int & x)		//TODO: check if math::pow is needed.
 {
 	//res holds the final result. power is the computation of power of x in each rank
 	int power = x, res = 0;
 
-	for (int i = 0; i <= n_; i++)
+	for (int i = 1; i <= n_; i++)
 	{
 		//computing the power of x
-		for (int j = 0; j < i; ++j)
+		for (int j = 1; j < i; ++j)
 		{
 			power *= power;
 		}
 
-		res += this->coefs_[i] * power;  
+		res += this->coefs_[i] * power; 
+		power = x;
 	}
+	
+	//adding const coefficient
+	res += coefs_[0];
 
 	//adding the point
 	fmap_[x] = res;
@@ -92,25 +125,27 @@ polynom & polynom::operator*(const polynom & secondpoly)
 	return mul_poly;
 }
 
-polynom& polynom::Derivative() {
+polynom polynom::Derivative()const {
 	//polynom is const (rank = 0)
 	if (n_ == 0) {
 		int *coefs = new int[1];
 		*coefs = 0;
 		polynom derpoli(0, coefs);
+		delete[]coefs;
 		return derpoli;
 	}
 
 	//polynom isn't const
-	int * newArr = new int[n_]; //size of n-1
+	int * newArr = new int[n_]; //one less coeff.
 	for (int i = 0; i < n_; i++) {
 		newArr[i] = ((i + 1)*coefs_[i + 1]);
 	}
 	polynom derivpoli(n_ - 1, newArr);
+	delete[] newArr;
 	return derivpoli;
 }
 
-polynom & polynom::Integral()
+polynom polynom::Integral()const
 {
 	int *coefs = new int[n_ + 2];    //when integrating number of coefs is (n+1)+1
 
@@ -123,8 +158,10 @@ polynom & polynom::Integral()
 	}
 
 	//creating the polynom
-	polynom integ_Poly(n_ + 2, coefs);
-	return integ_Poly;
+
+	polynom new_poly(n_ + 1, coefs);
+	delete[]coefs;
+	return new_poly;
 }
 
 
@@ -165,8 +202,27 @@ void polynom::printcoefs(ostream& os)  const {
   }
 }
 
-void polynom::plot(ostream & os) const
+
+void polynom::print(ostream & os)const
 {
+	//derivative and the integral
+	polynom I = Integral();
+	polynom d = Derivative();
+	
+
+	//printing polynom coefs.
 	printcoefs(os);
-	func::plot(os);
+	os <<endl;
+
+	//printing derivative and Integral coefs
+	os << "Derivative: ";
+	d.printcoefs(os);
+	os << endl;
+	
+	os << "Integral: ";
+	I.printcoefs(os);
+	os << "+C" << endl;
+
+	//plot the function points inserted.
+	plot(os);
 }

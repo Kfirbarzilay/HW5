@@ -84,7 +84,7 @@ void func::plot(ostream& os) const {
 
 ostream & operator<<(ostream & o, const func & f)
 {
-	f.plot(o);
+	f.print(o);
 	return o;
 }
 

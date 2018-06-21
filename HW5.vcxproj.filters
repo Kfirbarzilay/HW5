@@ -21,6 +21,9 @@
     <ClInclude Include="polynom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ratfunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="func.cpp">

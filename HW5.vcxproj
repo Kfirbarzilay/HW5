@@ -118,6 +118,7 @@
   <ItemGroup>
     <ClInclude Include="func.h" />
     <ClInclude Include="polynom.h" />
+    <ClInclude Include="ratfunc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="func.cpp" />

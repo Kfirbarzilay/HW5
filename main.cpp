@@ -6,7 +6,7 @@
 
 #include "func.h"
 #include "polynom.h"
-//#include "ratfunc.h"
+#include "ratfunc.h"
 //#include "compfunc.h"
  
 
@@ -76,62 +76,63 @@ int main() {
 			}
 		}
 
-		//if (!strcmp(func_cmd, "MathPolynom")) {
-		//	char *Op;
-		//	polynom *f1, *f2;
-		//	try {
-		//		token = strtok(func_value, ",");
-		//		f1 = (polynom*)func_list.at(token);
-		//		Op = strtok(NULL, ",");
-		//		token = strtok(NULL, ",");
-		//		f2 = (polynom*)func_list.at(token);
-		//		switch (*Op) {
-		//		case '+':
-		//			func_list[func_name] = new polynom((*f1) + (*f2));
-		//			break;
-		//		case '-':
-		//			func_list[func_name] = new polynom((*f1) - (*f2));
-		//			break;
-		//		case '*':
-		//			func_list[func_name] = new polynom((*f1)*(*f2));
-		//			break;
-		//		case '/':
-		//			//func_list[func_name] = new ratfunc(*f2, *f1);
-		//		}
-		//	}
-		//	catch (exception& e) {
-		//		cout << "Error MathPolynom: " << e.what() << endl;
-		//	}
-		//}
+		if (!strcmp(func_cmd, "MathPolynom")) {
+			char *Op;
+			polynom *f1, *f2;
+			try {
+				token = strtok(func_value, ",");
+				f1 = (polynom*)func_list.at(token);
+				Op = strtok(NULL, ",");
+				token = strtok(NULL, ",");
+				f2 = (polynom*)func_list.at(token);
+				switch (*Op) {
+				case '+':
+					func_list[func_name] = new polynom((*f1) + (*f2));
+					break;
+				case '-':
+					func_list[func_name] = new polynom((*f1) - (*f2));
+					break;
+				case '*':
+					func_list[func_name] = new polynom((*f1)*(*f2));
+					break;
+				case '/':
+					//func_list[func_name] = new ratfunc(*f2, *f1);
+					break;
+				}
+			}
+			catch (exception& e) {
+				cout << "Error MathPolynom: " << e.what() << endl;
+			}
+		}
 
-		//if (!strcmp(func_cmd, "MathRatFunc")) {
-		//	char Op;
-		//	//ratfunc *f1, *f2;
-		//	try {
-		//		token = strtok(func_value, ",");
-		//		//f1 = (ratfunc*)func_list.at(token);
-		//		token = strtok(NULL, ",");
-		//		Op = *token;
-		//		token = strtok(NULL, ",");
-		//		//f2 = (ratfunc*)func_list.at(token);
-		//		switch (Op) {
-		//		case '+':
-		//			//func_list[func_name] = new ratfunc((*f1) + (*f2));
-		//			break;
-		//		case '-':
-		//			//func_list[func_name] = new ratfunc((*f1) - (*f2));
-		//			break;
-		//		case '*':
-		//			//func_list[func_name] = new ratfunc((*f1)*(*f2));
-		//			break;
-		//		case '/':
-		//			//func_list[func_name] = new ratfunc((*f1) / (*f2));
-		//		}
-		//	}
-		//	catch (exception& e) {
-		//		cout << "Error MathRatFunc:" << e.what() << endl;
-		//	}
-		//}
+		if (!strcmp(func_cmd, "MathRatFunc")) {
+			char Op;
+			ratfunc *f1, *f2;
+			try {
+				token = strtok(func_value, ",");
+				f1 = (ratfunc*)func_list.at(token);
+				token = strtok(NULL, ",");
+				Op = *token;
+				token = strtok(NULL, ",");
+				f2 = (ratfunc*)func_list.at(token);
+				switch (Op) {
+			/*	case '+':
+					func_list[func_name] = new ratfunc((*f1) + (*f2));
+					break;
+				case '-':
+					func_list[func_name] = new ratfunc((*f1) - (*f2));
+					break;
+				case '*':
+					func_list[func_name] = new ratfunc((*f1)*(*f2));
+					break;
+				case '/':
+					func_list[func_name] = new ratfunc((*f1) / (*f2));*/
+				}
+			}
+			catch (exception& e) {
+				cout << "Error MathRatFunc:" << e.what() << endl;
+			}
+		}
 
 		if (!strcmp(func_cmd, "Print")) {
 			if (strcmp(func_name, "All")) {//not all
