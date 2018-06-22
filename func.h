@@ -13,7 +13,7 @@ class func {
 public:
 friend ostream& operator<<(ostream& o, const func& f);
 virtual func & operator<<(const int& x)=0;
-
+virtual int operator=(const int&) = 0;
 protected:
 int maxVal_; //maximum of all inputs
 int minVal_; //minimum of all inputs

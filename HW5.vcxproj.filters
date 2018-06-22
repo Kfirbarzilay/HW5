@@ -21,6 +21,9 @@
     <ClInclude Include="polynom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="compfunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ratfunc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -33,6 +36,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="polynom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ratfunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compfunc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

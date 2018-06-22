@@ -7,7 +7,7 @@
 #include "func.h"
 #include "polynom.h"
 #include "ratfunc.h"
-//#include "compfunc.h"
+#include "compfunc.h"
  
 
 using namespace std;
@@ -52,7 +52,7 @@ int main() {
 			try {
 				outer = func_list.at(outer_name);
 				inner = func_list.at(inner_name);
-				//func_list[string(outer_name) + "(" + string(inner_name) + ")"] = new compfunc(*outer, *inner);
+				func_list[string(outer_name) + "(" + string(inner_name) + ")"] = new compfunc(*outer, *inner);
 			}
 			catch (exception& e) {
 				cout << "Error SetCompFunc:" << e.what() << endl;
@@ -96,7 +96,7 @@ int main() {
 					func_list[func_name] = new polynom((*f1)*(*f2));
 					break;
 				case '/':
-					//func_list[func_name] = new ratfunc(*f2, *f1);
+					func_list[func_name] = new ratfunc(*f2, *f1);
 					break;
 				}
 			}
@@ -116,7 +116,7 @@ int main() {
 				token = strtok(NULL, ",");
 				f2 = (ratfunc*)func_list.at(token);
 				switch (Op) {
-			/*	case '+':
+				case '+':
 					func_list[func_name] = new ratfunc((*f1) + (*f2));
 					break;
 				case '-':
@@ -126,7 +126,7 @@ int main() {
 					func_list[func_name] = new ratfunc((*f1)*(*f2));
 					break;
 				case '/':
-					func_list[func_name] = new ratfunc((*f1) / (*f2));*/
+					func_list[func_name] = new ratfunc((*f1) / (*f2));
 				}
 			}
 			catch (exception& e) {
