@@ -26,8 +26,7 @@ polynom::polynom(const polynom& poli):	n_(poli.n_)
 	}
 
 	//min and max inputs values
-	minVal_ = poli.minVal_;
-	maxVal_ = poli.maxVal_;
+	firstinput = false;
 }
 
 polynom & polynom::operator=(const polynom & poly)
@@ -56,7 +55,7 @@ int polynom::operator=(const int& x)
 		//computing the power of x
 		for (int j = 1; j < i; ++j)
 		{
-			power *= power;
+			power *= x;
 		}
 
 		res += this->coefs_[i] * power;
@@ -86,7 +85,7 @@ func & polynom::operator<<(const int & x)		//TODO: check if math::pow is needed.
 		//computing the power of x
 		for (int j = 1; j < i; ++j)
 		{
-			power *= power;
+			power *= x;
 		}
 
 		res += this->coefs_[i] * power; 
@@ -244,7 +243,7 @@ polynom polynom::Integral()const
 	int counter = 0;
 	for (int i = 0; i <= n_; ++i)
 	{
-		if (coefs_[n_ + 1 - i] == 0)counter++;
+		if (coefs[n_ + 1 - i] == 0)counter++;
 		else break;
 	}
 	

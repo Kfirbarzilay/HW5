@@ -8,6 +8,12 @@ ratfunc::ratfunc(const polynom& polimechani, const polynom& polimone) :b_(polime
 
 func & ratfunc::operator<<(const int & x)
 {
+	if ((b_ = x) == 0) //check exception
+	{
+		mathexception devzero;
+		throw devzero;
+	}
+
 	if (!firstinput) {
 		firstinput = true;
 		minVal_ = x;
@@ -18,11 +24,6 @@ func & ratfunc::operator<<(const int & x)
 	(*this).a_ << x;
 	(*this).b_ << x;
 
-	if (b_.getfuncval(x) == 0) //check exception
-	{	
-		mathexception devzero;
-		throw devzero;
-	}
 	res = a_.getfuncval(x)/b_.getfuncval(x);
 	fmap_[x] = res;
 
