@@ -3,8 +3,8 @@
 //constructor
 polynom::polynom(int n, int * arr) : n_(n) 
 {
-	minVal_ = 0;
-	maxVal_ = 0;
+	firstinput = false; //no inputs yet.
+
 	coefs_ = new int[n_ + 1];
 	for (int i = 0; i <= n_ ; ++i)
 	{
@@ -73,6 +73,12 @@ int polynom::operator=(const int& x)
 func & polynom::operator<<(const int & x)		//TODO: check if math::pow is needed.
 {
 	//res holds the final result. power is the computation of power of x in each rank
+	if (!firstinput) {
+		firstinput = true;
+		minVal_ = x;
+		maxVal_ = x;
+	}
+
 	int power = x, res = 0;
 
 	for (int i = 1; i <= n_; i++)
@@ -96,6 +102,7 @@ func & polynom::operator<<(const int & x)		//TODO: check if math::pow is needed.
 	//checking for maximum values.
 	if (x < minVal_) minVal_ = x;
 	if (x > maxVal_) maxVal_ = x;
+	
 	return (*this);
 }
 

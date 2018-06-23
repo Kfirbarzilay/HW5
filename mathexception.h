@@ -1,5 +1,5 @@
-#ifndef _MATHEXCEPTION_
-#define _MATHEXCEPTION_
+#ifndef _MATH_EXCEPTION_
+#define _MATH_EXCEPTION_
 
 #include <exception>
 
@@ -9,7 +9,8 @@ class mathexception: public exception
 {
 public:
 	mathexception();
+	~mathexception();
 	virtual const char* what() const throw ();
-}mathex;
+};
 
 #endif

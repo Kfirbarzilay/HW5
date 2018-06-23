@@ -3,6 +3,6 @@ SetPolynom p 0,8
 MathPolynom r p,/,q
 AddPoint p 1,0,-1,2
 AddPoint q -1
-AddPoint r 2,0,-1
+AddPoint r 2,1,0,-1
 Print All
 

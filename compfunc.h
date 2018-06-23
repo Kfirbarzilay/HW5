@@ -1,8 +1,6 @@
 #ifndef _COMPFUNC_H_
 #define _COMPFUNC_H_
 
-#include "func.h"
-#include "polynom.h"
 #include "ratfunc.h"
 
 class compfunc : public func {

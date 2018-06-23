@@ -3,7 +3,7 @@
 using namespace std;
 
 void func::plot(ostream& os) const {
- 
+	if (fmap_.size() == 0)return;
   vector<int> sortImage;
     
   sortImage.clear();
