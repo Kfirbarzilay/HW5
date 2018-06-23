@@ -2,37 +2,19 @@
 #define _COMPFUNC_H_
 
 #include "func.h"
-template<class T, class Z>
+#include "polynom.h"
+#include "ratfunc.h"
+
 class compfunc : public func {
 public:
-	compfunc(const T& t,const Z& z);
+	compfunc(func& ,func&);
 	virtual func & operator<<(const int& x);
 	virtual int operator=(const int&);
 	virtual void print(ostream& os)const;
 protected:
-	T outer;
-	Z inner;
+	func* outer;
+	func* inner;
 };
 
-template<class T, class Z>
-int compfunc<T, Z>::operator=(const int& x)
-{
-	//don't need to implement this
-}
-
-template<class T, class Z>
-func & compfunc<T, Z>::operator<<(const int& x)
-{
-	int inner_res = inner = x;
-	int outer_res = outer = inner_res;
-	fmap_[x] = outer_res;
-}
-
-template<class T, class Z>
-compfunc<T, Z>::compfunc(const T& t, const Z& z)
-{
-	outer = t;
-	inner = z;
-}
 
 #endif // !_COMPFUNC_H_

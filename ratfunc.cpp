@@ -13,7 +13,10 @@ func & ratfunc::operator<<(const int & x)
 	(*this).a_ << x;
 	(*this).b_ << x;
 
-	res = (a_.getfuncval(x))/(b_.getfuncval(x));
+	if (b_.getfuncval(x) == 0)
+	{	
+	}
+	res = a_.getfuncval(x)/b_.getfuncval(x);
 	fmap_[x] = res;
 
 	if (x < minVal_) minVal_ = x;

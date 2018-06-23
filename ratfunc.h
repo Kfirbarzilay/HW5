@@ -1,6 +1,5 @@
 #ifndef _RATFUNC_Q
 #define _RATFUNC_Q
-
 #include "polynom.h"
 
 using namespace std;
