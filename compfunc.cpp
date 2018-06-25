@@ -1,6 +1,13 @@
 #include "compfunc.h"
 
-
+//************************************
+// Method:    compfunc
+// FullName:  compfunc::compfunc
+// Access:    public 
+// Description: a compfunc constructor
+// Parameter: func &
+// Parameter: func &
+//************************************
 compfunc::compfunc( func& t,  func& z)
 {
 	outer = &t;
@@ -8,6 +15,19 @@ compfunc::compfunc( func& t,  func& z)
 	firstinput = false;
 }
 
+compfunc::~compfunc()
+{
+
+}
+
+//************************************
+// Method:    operator<<
+// FullName:  compfunc::operator<<
+// Access:    virtual public 
+// Description: inherited from func. adds a point to fmap_
+// Returns:   func &
+// Parameter: const int & x
+//************************************
 func & compfunc::operator<<(const int& x)
 {
 
@@ -28,6 +48,15 @@ func & compfunc::operator<<(const int& x)
 	return *this;
 }
 
+//************************************
+// Method:    print
+// FullName:  compfunc::print
+// Access:    virtual public 
+// Description: prints the function
+// Returns:   void
+// Qualifier: const
+// Parameter: ostream & os
+//************************************
 void compfunc::print(ostream& os) const
 {
 	os << endl;
@@ -35,6 +64,14 @@ void compfunc::print(ostream& os) const
 	plot(os);
 }
 
+//************************************
+// Method:    operator=
+// FullName:  compfunc::operator=
+// Access:    virtual public 
+// Description: calculates f(x). doesn't store the point
+// Returns:   int
+// Parameter: const int &
+//************************************
 int compfunc::operator=(const int&x)//won't use it
 {
 	int inner_res = *inner = x;

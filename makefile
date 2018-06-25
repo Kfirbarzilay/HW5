@@ -1,4 +1,4 @@
-# Makefile for creating the 'Kindergarten' program
+# Makefile for creating the 'WolfraMamat' program
 CCC = g++
 CXXFLAGS = -Wall -g -std=c++0x
 CXXLINK = $(CCC)
@@ -6,11 +6,11 @@ OBJS = main.o Person.o Child.o Teacher.o Room.o Class.o Office.o
 RM = rm -f
 
 # Default target
-all: Kindergarten
+all: WolfraMamat
 
 # Creating the executable
-Kindergarten: $(OBJS)
-	$(CXXLINK) -o Kindergarten $(OBJS)
+WolfraMamat: $(OBJS)
+	$(CXXLINK) -o WolfraMamat $(OBJS)
 
 # Creating object files using default rules
 main.o: main.C Person.H Child.H
@@ -23,4 +23,4 @@ Office.o: Office.C Office.H
 
 # Cleaning old files before new make
 clean:
-	$(RM) Kindergarten *.o *.bak *~ "#"* core
+	$(RM) WolfraMamat *.o *.bak *~ "#"* core

@@ -2,6 +2,11 @@
 
 using namespace std;
 
+func::~func()
+{
+
+}
+
 void func::plot(ostream& os) const {
 	if (fmap_.size() == 0)return;
   vector<int> sortImage;
@@ -82,6 +87,16 @@ void func::plot(ostream& os) const {
   os<<endl;
 }
 
+//************************************
+// Method:    operator<<
+// FullName:  func::operator<<
+// Access:    virtual public 
+// Description: supports concatenation of functions to prints. 
+//				called from main.
+// Returns:   friend ostream&
+// Parameter: ostream & o
+// Parameter: const func & f
+//************************************
 ostream & operator<<(ostream & o, const func & f)
 {
 	f.print(o);
