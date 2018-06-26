@@ -8,6 +8,13 @@
 #include "ratfunc.h"
 #include "compfunc.h"
 
+#ifdef _DEBUG
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__)
+#define new DBG_NEW
+#endif
+#endif
+
 using namespace std;
 
 const int MAXLINE = 256;
@@ -19,7 +26,8 @@ int main() {
   map<string,func*> func_list;
   char func_cmd[MAXLINE], func_name[MAXLINE], func_value[MAXLINE];
   char* token;
- 
+  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
   while(!cin.eof()) {
     cin>>func_cmd>>func_name>>func_value;
     if (!strcmp(func_cmd, "//")) {

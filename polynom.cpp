@@ -179,8 +179,8 @@ polynom  polynom::operator+(const polynom & secondpoly)const
 	polynom add_Pol(n, arr);
 
 	//copying the first array and adding the second one
-	for (int i = 0; i <= (*this).n_ - counter; ++i) add_Pol.coefs_[i] += (*this).coefs_[i];
-	for (int i = 0; i <= secondpoly.n_ - counter; ++i) add_Pol.coefs_[i] += secondpoly.coefs_[i];
+	for (int i = 0; i <= (*this).n_-counter; ++i) add_Pol.coefs_[i] += (*this).coefs_[i];
+	for (int i = 0; i <= secondpoly.n_-counter; ++i) add_Pol.coefs_[i] += secondpoly.coefs_[i];
 	
 	delete[]arr;
 
@@ -199,7 +199,7 @@ polynom  polynom::operator+(const polynom & secondpoly)const
 polynom  polynom::operator-(const polynom & secondpoly)const
 {
 	int counter = 0;
-	if (n_ == secondpoly.n_) //if they are the same rank the new polynom can be shorter
+	if (n_ == secondpoly.n_) //if they are the same rank the new polynom can ve shorter
 	{
 		for (int i = 0; i <= n_; ++i)
 		{
@@ -208,17 +208,16 @@ polynom  polynom::operator-(const polynom & secondpoly)const
 		}
 	}
 
-	int n = (*this).n_ > secondpoly.n_? (*this).n_ - counter : secondpoly.n_ - counter; //max len polynom order
+	int n = (*this).n_ > secondpoly.n_ ? (*this).n_ - counter : secondpoly.n_ - counter; //max len polynom order
 	int* arr = new int[n + 1];
 	for (int i = 0; i <= n; ++i)arr[i] = 0;
 
+	polynom sub_Pol(n, arr);
 
 	//copying the first array and adding the second one
-	for (int i = 0; i <= (*this).n_-counter; ++i) arr[i] += (*this).coefs_[i];
-	for (int i = 0; i <= secondpoly.n_-counter; ++i) arr[i] -= secondpoly.coefs_[i];
+	for (int i = 0; i <= (*this).n_; ++i) sub_Pol.coefs_[i] += (*this).coefs_[i];
+	for (int i = 0; i <= secondpoly.n_; ++i) sub_Pol.coefs_[i] -= secondpoly.coefs_[i];
 
-  polynom sub_Pol(n, arr);
-  
 	delete[]arr;
 
 	return sub_Pol;

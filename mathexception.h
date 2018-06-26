@@ -2,6 +2,9 @@
 #define _MATH_EXCEPTION_
 
 #include <exception>
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 using namespace std;
 //a special exception class derived from exception class of std.
